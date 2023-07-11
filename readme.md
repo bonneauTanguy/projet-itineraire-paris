@@ -53,25 +53,6 @@ permanentes
 :information_source: Il existe des exceptions à ce modèle pour certains types de projets comme celui-ci (purement documentaire) qui traitent de livrables qui ne sont pas déployés en Production.
 Les branches permanentes develop et support-* trouvant moins leur utilité sur ces projets non-applicatifs.
 
-Contenu des commits
-Pourquoi les commits atomique
-Extrait de http://adopteungit.fr/methodologie/2017/04/26/commits-atomiques-la-bonne-approche.html  :
-
-C’est difficile de faire des petits commits parce qu’il est facile de ne pas en faire. Ca parait stupide dit comme ça, mais il est bien plus simple, à la fin d’un développement, de faire un gros commit plutôt que de s’amuser à tenter d’en faire plein de petits. C’est d’autant plus difficile que la plus-value des petits commits n’est pas visible sur le moment.
-
-C’est un peu comme les tests automatisés : sur le moment on se dit que ça ne sert à rien, qu’on va relire le code trois fois et bien vérifier la fonctionnalité pour être certain ou certaine de ne pas envoyer un bug et ça ira bien. Et le jour où ça pète en prod à cause d’un changement plus ou moins anodin, on se dit que s’il y avait eu des tests automatisés, le changement anodin aurait fait passer au rouge un test et le problème aurait été fixé avant même d’atteindre la prod.
-
-Les petits commits c’est pareil : c’est parfois chiant à faire, ça parait inutile mais le jour où ça pète en prod on est bien content·e d’avoir fait l’effort d’en écrire.
-
-On peut se demander quel est le rapport entre la taille des commits et un bug survenu en prod mais ce rapport est tout simple : plus il est difficile de trouver l’origine d’un bug et la manière de le fixer et plus il coûtera cher en temps humain pour le fixer. Réduire le coût d’un bug consiste donc à le repérer au plus tôt (idéalement avant qu’il n’atteigne la production) et ça c’est le rôle des tests, mais ça consiste également à réduire le temps qu’il faut à l’équipe de développement pour le fixer.
-
-Atomiser des commits
-Se référer aux ressources suivantes :
-
-Réaliser des commits atomiques
-
-Diviser un commit existant
-
 Messages de commit
 Format
 Le format des messages de commit suit la convention "Conventional Commits".
