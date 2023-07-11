@@ -36,7 +36,6 @@ Il existe 2 catégories de branches :
 permanentes
 
 ** main est la branche de stabilisation des versions prêtes à déployer sur l'environnement de production. 
-
 ** integration est la branche de stabilisation des versions prêtes à déployer sur l'environnement de recette. (on ne le fait pas ici )
 ** develop est une branche permanente de travail receptable des dernières évolutions pour déploiement sur l’environnement d'intégration.
 ** support-{version} sont des branches assurant le support immédiat d'une version en production antérieure au dernier tag de la branche master. Ces branches sont issues du tag correspondant à la version à corriger/supporter.
@@ -46,18 +45,6 @@ permanentes
 ** Les branches feature permettent de réaliser une fonctionnalité (de taille très variable) de façon isolée aux branches permanentes. Un ou plusieurs développeurs peuvent y travailler simultanément. Si la tâche est trop importante, elle peut être découpée en plusieurs sous-branches au périmètre plus réduit qui seront intégrées au fur et à mesure sur la branche principale du développement. Les branches feature sont issues et intégrées dans la branche develop ou une autre branche "feature".
 ** Les branches hotfix permettent de corriger la dernière version stable directement sur la branche master sans attendre une stabilisation de la branche develop. Les branches hotfix sont issues de la branche master et intégrées à la fois dans la branche master et la branche develop afin d'assurer une correction homogène et éviter toute régression.
 ** La branche integration permet d'isoler un état de la branche develop en vue de stabiliser une version dans la branche master. Ainsi, des correctifs supplémentaires peuvent être ajoutés afin d'assurer cette stabilité. Ces correctifs doivent être reportés sur la branche develop. La branche integration est issue de la branche develop et intégrée dans la branche master.
-
-La convention de nommage des feature-branches liées à un ticket Jira, est de la forme IOS-XXXX-<commentaire>
-
-Exemples :
-
-IOS-3872-logguer-la-reponse
-
-IOS-4521-montee-de-version-de-spring-boot
-
-IOS-5133 
-
-:warning: attention à la limite de nom d’image de 64 caractères sur Phoenix On Prem
 
 :exclamation: Comme leur catégorie l'indique, les branches éphémères doivent être supprimés une fois intégrées/fusionnées dans une branche permanente.
 
