@@ -1,0 +1,19 @@
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: forestgreen;
+    padding: 0 20px;
+}
+
+header > nav {
+    padding: 0 20px;
+}
+
+.liens {
+    margin-left: 30px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}

@@ -1,0 +1,14 @@
+footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: forestgreen;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px 0;
+    color: white;
+}
+
+footer > p {
+    font-size: 12px;
+}
