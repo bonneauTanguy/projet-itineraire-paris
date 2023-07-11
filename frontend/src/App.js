@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 // Importations des pages
 import Login from './pages/authentification/Login';
+import Logout from './pages/authentification/Logout';
 import Home from './pages/Home';
 
 // Importations des components
@@ -36,6 +37,7 @@ function App() {
   
         <Routes>
           <Route path='/' element={<Login />} />
+          <Route path='/logout' element={<Logout />} />
           <Route path='/home' element={<Home />} />
         </Routes>
   
