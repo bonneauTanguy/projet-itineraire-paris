@@ -26,7 +26,7 @@ const Header = () => {
                     </>
                     :
                     <>
-                        <Link className='liens' to='/login'>Connexion</Link>
+                        <Link className='liens' to='/'>Connexion</Link>
                         <Link className='liens' to='/register'>Inscription</Link>
                     </>
                 }
