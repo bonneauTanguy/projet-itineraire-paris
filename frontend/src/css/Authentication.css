@@ -17,6 +17,10 @@ form.formAuth > input {
     font-size: 0.75rem;
 }
 
+form.formAuth > input.colorError {
+    border: 1px solid red;
+}
+
 form.formAuth > input[type='submit'] {
     background-color: forestgreen;
     border: 1px solid black;
@@ -24,7 +28,7 @@ form.formAuth > input[type='submit'] {
     color: white;
 }
 
-main.formAuth > p {
+form.formAuth > p {
     color: red;
     text-align: center;
 }

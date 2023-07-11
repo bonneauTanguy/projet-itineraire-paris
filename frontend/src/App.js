@@ -2,6 +2,7 @@
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 // Importations des pages
+import Register from './pages/authentification/Register';
 import Login from './pages/authentification/Login';
 import Logout from './pages/authentification/Logout';
 import Home from './pages/Home';
@@ -15,36 +16,27 @@ function App() {
   const user_pseudo = sessionStorage.getItem('pseudo');
   const user_token = sessionStorage.getItem('token');
 
-  if (!user_id || !user_pseudo || !user_token) {
-    return (
-      <BrowserRouter>
-        <Header />
-
-        <Routes>
-          <Route path='/' element={<Login />} />
-          {/* <Route path='/' element={<Register />} /> */}
-        </Routes>
+  return (
+    <BrowserRouter>
+      <Header />
         
-        <Navigate to='/' replace />
+        {(!user_id || !user_pseudo || !user_token)
+        ?
+          <Routes>
+            <Route path='/' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+          </Routes>
+        :
+          <Routes>
+            <Route path='/' element={<Login />} />
+            <Route path='/logout' element={<Logout />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/home' element={<Home />} />
+          </Routes>}
 
-        <Footer />
-      </BrowserRouter>
-    );
-  } else {
-    return (
-      <BrowserRouter>
-        <Header />
-  
-        <Routes>
-          <Route path='/' element={<Login />} />
-          <Route path='/logout' element={<Logout />} />
-          <Route path='/home' element={<Home />} />
-        </Routes>
-  
-        <Footer />
-      </BrowserRouter>
-    );
-  }
+      <Footer />
+    </BrowserRouter>
+  )
 }
 
 export default App;
