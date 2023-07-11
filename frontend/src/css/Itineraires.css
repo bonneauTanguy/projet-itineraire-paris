@@ -1,0 +1,12 @@
+main > div.divItineraire {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+main > div.divItineraire > div.listItineraire {
+    height: 400px;
+    width: 45%;
+    overflow: auto;
+}

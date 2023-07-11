@@ -1,0 +1,21 @@
+div.divCard {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid forestgreen;
+    border-radius: 5px;
+}
+
+div.divCard > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div.divCard > div > h2, div.divCard > div > p {
+    margin: 0;
+}
+
+div.divCard > p {
+    margin: 0;
+}

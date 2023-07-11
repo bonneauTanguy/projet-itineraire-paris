@@ -21,6 +21,7 @@ const Header = () => {
                 {(user_id && user_pseudo && user_token)
                     ?
                     <>
+                        <Link className='liens' to='/stations'>Stations</Link>
                         <Link className='liens' to='/profile'>Profil</Link>
                         <Link className='liens' to='/logout'>Déconnexion</Link>
                     </>

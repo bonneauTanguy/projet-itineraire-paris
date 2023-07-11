@@ -6,6 +6,8 @@ import Register from './pages/authentification/Register';
 import Login from './pages/authentification/Login';
 import Logout from './pages/authentification/Logout';
 import Home from './pages/Home';
+import Stations from './pages/itineraires/Stations';
+import NewItineraire from './pages/itineraires/NewItineraire';
 
 // Importations des components
 import Header from './components/Header';
@@ -33,6 +35,8 @@ function App() {
             <Route path='/logout' element={<Logout />} />
             <Route path='/register' element={<Register />} />
             <Route path='/home' element={<Home />} />
+            <Route path='/stations' element={<Stations />} />
+            <Route path='/create-itineraire' element={<NewItineraire />} />
           </Routes>}
 
       <Footer />
