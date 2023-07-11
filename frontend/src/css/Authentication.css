@@ -1,0 +1,38 @@
+main.mainAuth {
+    min-height: 40vh;
+}
+
+form.formAuth {
+    display: flex;
+    flex-direction: column;
+}
+
+form.formAuth > input {
+    height: 40px;
+    width: 70%;
+    margin: 5px auto;
+    padding: 0 10px;
+    border: 1px solid forestgreen;
+    border-radius: 10px;
+    font-size: 0.75rem;
+}
+
+form.formAuth > input.colorError {
+    border: 1px solid red;
+}
+
+form.formAuth > input[type='submit'] {
+    background-color: forestgreen;
+    border: 1px solid black;
+    text-transform: uppercase;
+    color: white;
+}
+
+form.formAuth > p {
+    color: red;
+    text-align: center;
+}
+
+main.mainAuth > p {
+    text-align: center;
+}

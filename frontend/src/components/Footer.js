@@ -9,7 +9,7 @@ import '../css/Footer.css';
 const Footer = () => {
     return (
         <footer>
-            <p>Design by Léana Bouron - EANP2023 - LiveCampus</p>
+            <p>Design by Groupe C - EANP2023 - LiveCampus</p>
         </footer>
     );
 }
