@@ -26,7 +26,7 @@ Traiter la demande de fusion suivant la conduite décrite dans le chapitre Relec
 
 Suivant la branche ciblée, réaliser des tests complémentaires sur le résultat de cette intégration.
 
-# Organisation Git Rocher Flow
+# Organisation Git  Flow
 Généralement, le cycle de vie de nos branches Git et les flux de travail associés à nos applications s'inspirent fortement du célèbre gitflow standard.
 
 Notre Gitflow est expliqué sur une page dédiée : Git workflow .
