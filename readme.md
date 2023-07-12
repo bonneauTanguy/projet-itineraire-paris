@@ -3,7 +3,7 @@
 # Prérequis
 Un client Git (soit le client de son IDE, soit un client indépendant)
 
-Un serveur Git commun (ici Gitlab)
+Un serveur Git commun (ici Githab)
 
 Au moins un développeur
 
