@@ -151,6 +151,8 @@ let APIRoutes = function (passport) {
      *         description: Champs obligatoires manquants
      *       401:
      *         description: Utilisateur non connecté
+     *       403:
+     *         description: Permissions insuffisantes
      *       404:
      *         description: Aucun résultat pour cet itinéraire
      *       500:
@@ -178,12 +180,36 @@ let APIRoutes = function (passport) {
      *         description: Succès
      *       401:
      *         description: Utilisateur non connecté
+     *       403:
+     *         description: Permissions insuffisantes
      *       404:
      *         description: Aucun résultat pour cet itinéraire
      *       500:
      *         description: Erreur interne
      */
     router.delete('/itineraires/delete/:itineraireId', allowOnly(config.userRoles.user, Controller.deleteById));
+
+    /**
+     * @swagger
+     * /itineraires/user/{userId}:
+     *   get:
+     *     tags:
+     *       - Itinéraires
+     *     summary: Retourne tous les itinéraires de l'utilisateur connecté
+     *     description: Retourne tous les itinéraires de l'utilisateur connecté
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *         description: Liste
+     *       401:
+     *         description: Utilisateur non connecté
+     *       403:
+     *         description: Permissions insuffisantes
+     *       500:
+     *         description: Erreur interne
+     */
+    router.get('/itineraires/user/:userId', allowOnly(config.userRoles.user, Controller.getItinerairesByUser));
 
     return router;
 }

@@ -1,0 +1,20 @@
+main > a.buttonItineraire {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    right: 15%;
+    text-decoration: none;
+}
+
+main > a.buttonItineraire > button {
+    background-color: forestgreen;
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: white;
+    text-transform: uppercase;
+}
+
+main > ul > p {
+    text-align: center;
+}

@@ -122,6 +122,22 @@ let Controller = {
         } catch (error) {
             rep.status(500).json({ result: false, error: 'Erreur interne' });
         }
+    },
+
+    getItinerairesByUser: async function (req, rep) {
+        try {
+            let results = await models.itineraires.findAll({
+                where: { utilisateurId: req.user.id },
+                order: [['createdAt', 'DESC']],
+                attributes: {
+                    exclude: ['deletedAt']
+                }
+            });
+
+            rep.status(200).json({ result: results, error: '' });
+        } catch (error) {
+            rep.status(500).json({ result: false, error: 'Erreur interne' });
+        }
     }
 }
 
