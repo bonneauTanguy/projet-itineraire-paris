@@ -1,9 +1,10 @@
 // Importations React
-import React, { createRef } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet-routing-machine';
+import jsPDF from 'jspdf';
 
 // Importations des components
 
@@ -54,6 +55,8 @@ export default class NewItineraire extends React.Component {
         });
     }
 
+    // Fonction qui génère un PDF de l'itinéraire
+
     render() { 
         const { depart, arrivee } = this.state;
         
@@ -101,6 +104,8 @@ export default class NewItineraire extends React.Component {
                         <Routing routeFrom={depart} routeTo={arrivee} />
                     )}
                 </MapContainer>
+
+                {/* <button onClick={this.handleGeneratePDF}>Générer le PDF de l'itinéraire</button> */}
             </main>
         );
     }
@@ -119,14 +124,28 @@ const MapEventsHandler = ({ onClick }) => {
 const Routing = ({ routeFrom, routeTo }) => {
     const map = useMapEvents({
         zoomend: () => {
-            L.Routing.control({
+            calculateRoute();
+        }
+    });
+
+    useEffect(() => {
+        calculateRoute();
+    }, []);
+
+    const calculateRoute = () => {
+        if (routeFrom && routeTo) {
+            const control = L.Routing.control({
                 waypoints: [
                     L.latLng(routeFrom[0], routeFrom[1]),
                     L.latLng(routeTo[0], routeTo[1])
                 ]
             }).addTo(map);
+
+            return () => {
+                map.removeControl(control);
+            }
         }
-    });
+    }
 
     return null;
 }
