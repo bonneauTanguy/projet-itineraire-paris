@@ -1,7 +1,9 @@
 // Importations React
-import React from 'react';
+import React, { createRef } from 'react';
 import axios from 'axios';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet-routing-machine';
 
 // Importations des components
 
@@ -17,22 +19,53 @@ export default class NewItineraire extends React.Component {
 
         this.state = {
             position: [48.8643713, 2.3300615],
-            velibs: [
-                { id: 1, lat: 51.505, lng: -0.09, name: 'London' },
-                { id: 2, lat: 48.8566, lng: 2.3522, name: 'Paris' },
-                { id: 3, lat: 40.7128, lng: -74.006, name: 'New York' }
-            ]
+            itineraire: [],
+            depart: null,
+            arrivee: null
         }
     }
 
-    componentDidMount() {
-        // this.getVelib();
+    // Fonction qui récupère les coordonnées du click sur la map
+    handleMapClick = (e) => {
+        const { depart, arrivee } = this.state;
+
+        if (!depart) {
+            this.setState({
+                depart: [e.latlng.lat, e.latlng.lng ]
+            });
+        } else if (!arrivee) {
+            this.setState({
+                arrivee: [e.latlng.lat, e.latlng.lng ]
+            });
+        }
     }
-    
-    render() {
+
+    // Fonction qui permet de déplacer le point de départ
+    handleDepartMarkerDrag = (e) => {
+        this.setState({
+            depart: [e.target._latlng.lat, e.target._latlng.lng]
+        });
+    }
+
+    // Fonction qui permet de déplacer le point d'arrivée
+    handleArriveeMarkerDrag = (e) => {
+        this.setState({
+            arrivee: [e.target._latlng.lat, e.target._latlng.lng]
+        });
+    }
+
+    render() { 
+        const { depart, arrivee } = this.state;
+        
         return (
             <main>
                 <h1>Créer un nouvel itinéraire</h1>
+
+                <p>
+                    Cliquez sur la carte pour choisir votre point de départ et d'arrivée.<br />
+                    Vous pouvez déplacer les points en les glissant sur la map.<br />
+                    Il est nécessaire de zoomer ou de dézoomer au moins une fois pour que l'itinéraire soit généré.
+                </p>
 
                 <MapContainer
                     center={this.state.position}
@@ -41,30 +74,59 @@ export default class NewItineraire extends React.Component {
                     style={{ height: 400, width: '100%' }}
                 >
                     <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
-                    {/* {this.state.velibs.map((velib) => (
-                        <Marker key={velib.id} position={[velib.lat, velib.lng]}>
-                            <Popup>{velib.name}</Popup>
+
+                    <MapEventsHandler onClick={this.handleMapClick} />
+
+                    {depart && (
+                        <Marker
+                            position={depart}
+                            draggable={true}
+                            onDragend={this.handleDepartMarkerDrag}
+                        >
+                            <Popup>Point de départ</Popup>
                         </Marker>
-                    ))} */}
+                    )}
+
+                    {arrivee && (
+                        <Marker
+                            position={arrivee}
+                            draggable={true}
+                            onDragend={this.handleArriveeMarkerDrag}
+                        >
+                            <Popup>Point d'arrivée</Popup>
+                        </Marker>
+                    )}
+
+                    {depart && arrivee && (
+                        <Routing routeFrom={depart} routeTo={arrivee} />
+                    )}
                 </MapContainer>
             </main>
         );
     }
+}
 
-    // Fonction pour récupérer la liste des vélib disponibles
-    getVelib = async () => {
-        try {
-            const URL = `https://opendata.paris.fr/api/records/1.0/search/?dataset=velib-disponibilite-en-temps-reel&q=&facet=name&facet=is_installed&facet=is_renting&facet=is_returning&facet=nom_arrondissement_communes`;
+// Fonction qui provoque un click sur la map
+const MapEventsHandler = ({ onClick }) => {
+    useMapEvents({
+        click: onClick
+    });
 
-            axios.get(URL).then(res => {
-                const velibs = res.data;
-                
-                this.setState({
-                    velibs: velibs
-                });
-            });
-        } catch (error) {
-            console.log(error);
+    return null;
+}
+
+// Fonction qui génère le trajet entre le point de départ et le point d'arrivée
+const Routing = ({ routeFrom, routeTo }) => {
+    const map = useMapEvents({
+        zoomend: () => {
+            L.Routing.control({
+                waypoints: [
+                    L.latLng(routeFrom[0], routeFrom[1]),
+                    L.latLng(routeTo[0], routeTo[1])
+                ]
+            }).addTo(map);
         }
-    }
+    });
+
+    return null;
 }
